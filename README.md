@@ -11,7 +11,7 @@
 2. Clone the repository directly into the current directory:
 
     ```bash
-    https://github.com/COMP-016-Web-Development-Group-1/TeamQuizApp.git
+    git clone https://github.com/COMP-016-Web-Development-Group-1/TeamQuizApp.git
     ```
 
 3. Navigate into the project folder:
