@@ -1,0 +1,102 @@
+[
+    {
+        "question": " _____ is the standard language for creating and designing webpages and web applications.",
+        "choices": [
+            "HTML", 
+            "CSS", 
+            "Java", 
+            "Python"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which of the following statements about HTML is NOT true?",
+        "choices": [
+            "HTML is not a programming language; it is a Markup Language.", 
+            "A markup language is a set of markup tags.", 
+            "HTML uses markup tags to describe web pages.", 
+            "HTML documents contain HTML tags and plain text."
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which HTML tag is used to create a line break without starting a new paragraph?",
+        "choices": [
+            "&lt;hr&gt;",
+            "&lt;p&gt;",
+            "&lt;br&gt;",
+            "&lt;line&gt;"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "A _____ is a code element enclosed in angle brackets (e.g., <p>) used to define and format content in HTML.",
+        "choices": [
+            "Class", 
+            "Script", 
+            "Tag", 
+            "Function"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "The <form> tag is used to create a section on a web page for _____.",
+        "choices": [
+            "Inserting videos", 
+            "Displaying headings", 
+            "User input", 
+            "Creating animations"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which of the following statements about things to remember about HTML is NOT TRUE?",
+        "choices": [
+            "Each opening tag (&lt;tag&gt;) must have a corresponding closing tag (&lt;/tag&gt;) to define the element properly.", 
+            "Elements can be nested within each other to create complex web page structures.", 
+            "A tag is always enclosed in angle brackets <>, like &lt;HTML&gt;.", 
+            "If you want a line break or a new line without starting a new paragraph, use the &lt;hr&gt; tag."
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Which tag defines an image?",
+        "choices": [
+            "&lt;img&gt;", 
+            "&lt;src&gt;", 
+            "&lt;a href&gt", 
+            "&lt;br&gt"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "What is the purpose of the alt attribute in an <img> tag?",
+        "choices": [
+            "To resize the image.", 
+            "To link the image to another page.", 
+            "To provide alternate text if the image cannot be displayed.", 
+            "To change the background color."
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which HTML tag is used to create a drop-down list in a form?",
+        "choices": [
+            "&lt;input type=”dropdown”&gt", 
+            "&lt;option&gt", 
+            "&lt;select&gt", 
+            "&lt;list&gt"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which HTML tag is used to display preformatted text that preserves spaces and line breaks?",
+        "choices": [
+            "&lt;p&gt", 
+            "&lt;pre&gt", 
+            "&lt;code&gt", 
+            "&lt;text&gt"
+        ],
+        "answer": 1
+    }
+  ]
