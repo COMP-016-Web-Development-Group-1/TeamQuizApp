@@ -1,68 +1,73 @@
-/*
-
-Initialization
-
-- Logic for getting qs from json file
-    - get number of qs
-    - get choices per q
-
-Main Function
-
-- Logic for running the app
-    - display 1 q with its choices
-    - Logic for getting user input
-    - Logic for checking if the answer is correct
-    - Logic for displaying the result
-    - Logic for displaying the next or previous q
-    - Logic for displaying the final result
-
-*/
-$(document).ready(function () {
-  let questions = [];
-  let currentQuestionIndex = 0;
-  let score = 0;
-
-  function loadQuestion(index) {
-    const question = questions[index];
-    $("#question-text").text(question.question);
-    $("#choices").empty();
-
-    question.choices.forEach((choice) => {
-      const btn = $("<button>")
-        .addClass("choice-btn")
-        .text(choice)
-        .click(() => {
-          if (choice === question.answer) {
-            score++;
-          }
-          $("#next-btn").show();
-          $(".choice-btn").prop("disabled", true);
-        });
-      $("#choices").append(btn);
-    });
-
-    $("#next-btn").hide();
-  }
-
-  function showNextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-      loadQuestion(currentQuestionIndex);
-    } else {
-      showScore();
+fetch("questions.json")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Failed to load questions.");
     }
-  }
+    return response.json();
+  })
+  .then((data) => {
+    let currentQuestionIndex = 0;
 
-  function showScore() {
-    $(".question-box").hide();
-    $("#score-display").text(`Your Score: ${score}/${questions.length}`).show();
-  }
-
-  $.getJSON("questions.json", function (data) {
-    questions = data;
-    $(".question-box").show();
-    loadQuestion(currentQuestionIndex);
+    // Display the first question
+    displayQuestion(data, currentQuestionIndex);
+  })
+  .catch((error) => {
+    console.error(error.message);
   });
 
-  $("#next-btn").click(showNextQuestion);
-});
+let currentScore = 0; // Move currentScore outside the function to retain its value
+
+const displayQuestion = (data, currentQuestionIndex) => {
+  const questionObj = data[currentQuestionIndex];
+  const questionContainer = document.querySelector(".question-area");
+  const questionElement = document.querySelector(".question-text");
+  const choicesButtons = document.querySelectorAll(".option");
+  const qNumberElement = document.querySelector(".quiz-header .qnumber");
+  const scoreElement = document.querySelector(".quiz-header .score");
+
+  // Update question number and score
+  qNumberElement.textContent = `Question: ${currentQuestionIndex + 1}/${
+    data.length
+  }`;
+  scoreElement.textContent = `Score: ${currentScore} /${data.length}`;
+
+  questionElement.textContent = questionObj.question;
+
+  choicesButtons.forEach((btn, index) => {
+    btn.textContent = questionObj.choices[index];
+  });
+
+  choicesButtons.forEach((btn, index) => {
+    btn.onclick = () => {
+      if (index === questionObj.answer) {
+        questionContainer.style.backgroundColor = "#47f547";
+        questionElement.style.backgroundColor = "#47f547";
+        currentScore += 1; // Increment score
+        scoreElement.textContent = `Score: ${currentScore} /${data.length}`; // Update score display
+        setTimeout(() => {
+          questionContainer.style.backgroundColor = "";
+          questionElement.style.backgroundColor = "";
+          currentQuestionIndex++;
+          if (currentQuestionIndex < data.length) {
+            displayQuestion(data, currentQuestionIndex);
+          } else {
+            window.location.href = "Message.html";
+          }
+        }, 1000);
+      } else {
+        questionContainer.style.backgroundColor = "#f55151";
+        questionElement.style.backgroundColor = "#f55151";
+        setTimeout(() => {
+          questionContainer.style.backgroundColor = "";
+          questionElement.style.backgroundColor = "";
+          currentQuestionIndex++;
+          if (currentQuestionIndex < data.length) {
+            displayQuestion(data, currentQuestionIndex);
+          } else {
+            window.location.href = "Message.html";
+          }
+        }, 1000);
+      }
+    };
+  });
+};
